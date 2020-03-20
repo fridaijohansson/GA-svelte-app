@@ -12,7 +12,7 @@
 		const task = {
 			task: newTask,
 			completed: false,
-			id: newTask.length-1,
+			id: Date.now(),
 		};
 
 		taskArray = [task, ...taskArray];
@@ -93,7 +93,7 @@
 
 main{
     width: 700px;
-    min-height: 800px;
+    min-height: 400px;
     background-color: rgb(133, 157, 192);
     margin: auto;
     margin-top: 20px;
