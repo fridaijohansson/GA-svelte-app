@@ -1,10 +1,10 @@
 <!-- SCRIPT -->
 <script>
-//Creating our fake database with "taskArray" and declaring the variable "newTask"
+//Creating a fake database with "taskArray" and declaring the variable "newTask"
 let newTask="";
 let taskArray = [{id:1, task:"första händelse", completed:false}, {id:2, task:"andra händelse", completed:false}];
 
-//addTask recives an event which initiate a "newTask"
+//addTask recives an event which initiate a new task 
 function addTask(event){
 
 	//Trims off any space before and after the object
@@ -13,7 +13,7 @@ function addTask(event){
 	//If it's not a new task then the function return nothing
 	if (!newTask) return;
 
-	//This puts ""newTask" and more infrmation into a new object
+	//This puts ""newTask" and more infrmation into a new variable
 	const task = {
 		task: newTask,
 		completed: false,
@@ -24,8 +24,6 @@ function addTask(event){
 	taskArray = [task, ...taskArray];
 	newTask = "";
 }
-
-
 
 function deleteTask(id){
 	//Splice takes the given object out of the array based on the object's id
@@ -43,6 +41,7 @@ function toggleComplete(id){
 
 <!-- HTML -->
 <main>
+
 	<h1>TODO APP SVELTE</h1>
 	
 	<!-- preventDefault is called when the form is submitted to run the function "addTask", 
