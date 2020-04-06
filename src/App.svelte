@@ -2,7 +2,7 @@
 <script>
 //Creating a fake database with "taskArray" and declaring the variable "newTask"
 let newTask="";
-let taskArray = [{id:1, task:"första händelse", completed:false}, {id:2, task:"andra händelse", completed:false}];
+let taskArray = [{id:1, task:"First task", completed:false}, {id:2, task:"Second task", completed:false}];
 
 //addTask recives an event which initiate a new task 
 function addTask(event){
