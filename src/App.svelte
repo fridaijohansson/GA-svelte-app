@@ -1,64 +1,61 @@
+<!-- SCRIPT -->
 <script>
-	let newTask="";
-	let taskArray = [{id:1, task:"första händelse", completed:false},
-	{id:2, task:"andra händelse", completed:false}];
+//Creating our fake database with "taskArray" and declaring the variable "newTask"
+let newTask="";
+let taskArray = [{id:1, task:"första händelse", completed:false}, {id:2, task:"andra händelse", completed:false}];
 
+//addTask recives an event which initiate a "newTask"
+function addTask(event){
 
-	function addTask(event){
-		newTask = newTask.trim();
-		alert(newTask);
-		if (!newTask) return;
+	//Trims off any space before and after the object
+	newTask = newTask.trim();
 
-		const task = {
-			task: newTask,
-			completed: false,
-			id: Date.now(),
-		};
+	//If it's not a new task then the function return nothing
+	if (!newTask) return;
 
-		taskArray = [task, ...taskArray];
-		
-		newTask = "";
-	}
+	//This puts ""newTask" and more infrmation into a new object
+	const task = {
+		task: newTask,
+		completed: false,
+		id: Date.now(),
+	};
 
-
-
-	function deleteTask(id){
-
-		//Splice takes the given object out of the array
-		  taskArray = taskArray.filter(item => item.id !== Number(id));
-
-		
-
-	}
-
-	//Function used to mark which task has been completed with a checkbox
-	function toggleComplete(id){
-
-		const index = taskArray.findIndex(item => item.id === Number(id));
-	 	taskArray[index].checked = !taskArray[index].completed;
-		
-	}
+	//Adds the new object to the beginning of the array and redefines "newTask"
+	taskArray = [task, ...taskArray];
+	newTask = "";
+}
 
 
 
+function deleteTask(id){
+	//Splice takes the given object out of the array based on the object's id
+	taskArray = taskArray.filter(item => item.id !== Number(id));
+}
 
+//Function used to mark which task has been completed with a checkbox
+function toggleComplete(id){
 
-
+	const index = taskArray.findIndex(item => item.id === Number(id));
+	taskArray[index].checked = !taskArray[index].completed;
+}
 
 </script>
 
-
+<!-- HTML -->
 <main>
 	<h1>TODO APP SVELTE</h1>
 	
+	<!-- preventDefault is called when the form is submitted to run the function "addTask", 
+	"addTask" recieves an event, submit, from preventDefault -->
 	<form id="taskForm" on:submit|preventDefault={addTask}>
 		
+		<!-- bind:value allows the value of "newTask" to be changed by the users input -->
 		<input type="text" name="taskName" id="task" placeholder="task" bind:value={newTask}>
-		<button on:click={addTask}>Add task</button>
+		<input type="submit" value="Add Task">
 	</form>
 
-
-
+	<!-- In this div an each-block displays/renders the fake database everytime a new task is added. 
+	When displaying the task in the div a delete button and a checkbox is added to edit the todo list-->
 	<div id="todoList">
 		{#each taskArray as task (task.id)}
 			<div class="container">
@@ -70,20 +67,11 @@
 			</div>
 			<hr>
 		{/each}
-		
-		
-
 	</div>
-
-
-
 
 </main>
 
-
-
-
-
+<!-- STYLE -->
 <style>
 *{
     margin: 0;
