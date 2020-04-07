@@ -20,14 +20,15 @@ function addTask(event){
 		id: Date.now(),
 	};
 
-	//Adds the new object to the beginning of the array and redefines "newTask"
-	taskArray = [task, ...taskArray];
+	//Adds the new object to the end of the array and redefines "newTask"
+	taskArray = [...taskArray, task];
 	newTask = "";
 }
 
 function deleteTask(id){
-	//Splice takes the given object out of the array based on the object's id
+	//Filter filters out the object from the array and removes it
 	taskArray = taskArray.filter(item => item.id !== Number(id));
+	console.log(taskArray);
 }
 
 //Function used to mark which task has been completed with a checkbox
@@ -56,7 +57,7 @@ function toggleComplete(id){
 	<!-- In this div an each-block displays/renders the fake database everytime a new task is added. 
 	When displaying the task in the div a delete button and a checkbox is added to edit the todo list-->
 	<div id="todoList">
-		{#each taskArray as task (task.id)}
+		{#each [...taskArray].reverse() as task (task.id)}
 			<div class="container">
 				<h1 class="newTask">{task.task}</h1>
 				<div class="buttons">
