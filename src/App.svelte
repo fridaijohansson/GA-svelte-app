@@ -33,7 +33,7 @@ function deleteTask(id){
 //Function used to mark which task has been completed with a checkbox
 function toggleComplete(id){
 
-	const index = taskArray.findIndex(item => item.id === Number(id));
+	const index = taskArray.findIndex(item => item.id === id);
 	taskArray[index].checked = !taskArray[index].completed;
 }
 
