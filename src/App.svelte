@@ -27,7 +27,7 @@ function addTask(event){
 
 function deleteTask(id){
 	//Filter filters out the object from the array and removes it
-	taskArray = taskArray.filter(item => item.id !== Number(id));
+	taskArray = taskArray.filter(item => item.id !== id);
 }
 
 //Function used to mark which task has been completed with a checkbox
